@@ -24,7 +24,12 @@
 
 //changeParaments : 如果请求网址中变量在‘？’之后，使用@{@"parament":@"object"}
 //                  如果请求网址中变量在‘？’之前，使用@{@"_LXP_ChangeParament":@"object"}
-+ (void)getNetMessageFrom:(NSString *)stringOfURL changeParaments:(NSDictionary *)dic  messageLocation:(NSString *)stringOfLocation success:(void(^)(LXPParse * parse))success failure:(void(^)(NSError *error))failure;{
++ (void)getNetMessageFrom:(NSString *)stringOfURL
+          changeParaments:(NSDictionary *)dic
+          messageLocation:(NSString *)stringOfLocation
+                  success:(void(^)(LXPParse * parse))success
+                  failure:(void(^)(NSError *error))failure;
+{
     //网址分析
     NSArray *arr = [NSArray new];
     if ([stringOfURL rangeOfString:@"?"].location != NSNotFound) {
@@ -55,7 +60,9 @@
 }
 
 /* 地址分析*/
-+ (NSArray *)NetURLAnalysis:(NSString *)netURL changeParaments:(NSDictionary *)dic{
++ (NSArray *)NetURLAnalysis:(NSString *)netURL
+            changeParaments:(NSDictionary *)dic
+{
     
     NSString *url;
     NSMutableDictionary *paramentsDic;
@@ -102,7 +109,9 @@
 }
 
 //分析数据位置、调用解析方法
-+ (instancetype)parse:(id)data andMessageURL:(NSString *)MessageURL{
++ (instancetype)parse:(id)data
+        andMessageURL:(NSString *)MessageURL
+{
     
     LXPParse *parse = [LXPParse new];
     parse.pathData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -125,7 +134,9 @@
 }
 
 //解析
-+ (instancetype )parseArr:(NSArray * )data RUL:(NSString *)url {
++ (instancetype )parseArr:(NSArray * )data
+                      RUL:(NSString *)url
+{
     
     
     NSString *string = [url substringWithRange:NSMakeRange([url rangeOfString:@"["].location+1, url.length-2-[url rangeOfString:@"["].location)];

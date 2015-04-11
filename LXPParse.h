@@ -23,7 +23,11 @@
 
 
 //超级无敌省事儿庸人自扰深陷苦海心花怒放妈妈说方法名要长的请求加解析方法
-+(void)getNetMessageFrom:(NSString *)stringOfURL changeParaments:(NSDictionary *)dic  messageLocation:(NSString *)stringOfLocation success:(void(^)(LXPParse * parse))success failure:(void(^)(NSError *error))failure;
++(void)getNetMessageFrom:(NSString *)stringOfURL
+         changeParaments:(NSDictionary *)dic
+         messageLocation:(NSString *)stringOfLocation
+                 success:(void(^)(LXPParse * parse))success
+                 failure:(void(^)(NSError *error))failure;
 
 
 
