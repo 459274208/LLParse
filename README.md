@@ -1,2 +1,4 @@
 # LXPParse
 For network data analysis
+本类是基于知名第三方库AFNetworking开发的。内部集成网络请求和解析，使用者只需要引用一个方法即可实现请求和解析，引用时通过一个对象方法进行调用。
+详情请参考Demo
