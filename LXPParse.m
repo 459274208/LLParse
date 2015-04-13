@@ -1,13 +1,13 @@
 //
 //  LXPParse.m
-//  
+//  AXM
 //
 //  Created by 不要叫我小兰(*^__^*)  on 15/3/10.
 //  Copyright (c) 2015年 lxp. All rights reserved.
 //
 #import "LXPParse.h"
 #import "AFNetworking.h"
-#define _LXP_ChangeParament @"_LXP_ChangeParament"
+
 @implementation LXPParse
 
 {
@@ -24,12 +24,7 @@
 
 //changeParaments : 如果请求网址中变量在‘？’之后，使用@{@"parament":@"object"}
 //                  如果请求网址中变量在‘？’之前，使用@{@"_LXP_ChangeParament":@"object"}
-+ (void)getNetMessageFrom:(NSString *)stringOfURL
-          changeParaments:(NSDictionary *)dic
-          messageLocation:(NSString *)stringOfLocation
-                  success:(void(^)(LXPParse * parse))success
-                  failure:(void(^)(NSError *error))failure;
-{
++ (void)getNetMessageFrom:(NSString *)stringOfURL changeParaments:(NSDictionary *)dic  messageLocation:(NSString *)stringOfLocation success:(void(^)(LXPParse * parse))success failure:(void(^)(NSError *error))failure;{
     //网址分析
     NSArray *arr = [NSArray new];
     if ([stringOfURL rangeOfString:@"?"].location != NSNotFound) {
@@ -38,10 +33,9 @@
     }else{
         arr = @[stringOfURL,@""];
     }
- 
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
     [manager GET:arr[0] parameters:arr[1] success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (stringOfLocation == nil) {
             //如果 不输入数据地址，就进行全部解析
@@ -60,9 +54,7 @@
 }
 
 /* 地址分析*/
-+ (NSArray *)NetURLAnalysis:(NSString *)netURL
-            changeParaments:(NSDictionary *)dic
-{
++ (NSArray *)NetURLAnalysis:(NSString *)netURL changeParaments:(NSDictionary *)dic{
     
     NSString *url;
     NSMutableDictionary *paramentsDic;
@@ -94,7 +86,7 @@
     
     for (NSString *key  in [dic allKeys]) {
         if ([key isEqualToString:_LXP_ChangeParament]) {
-           
+            
             url = [netURL stringByReplacingOccurrencesOfString:_LXP_ChangeParament withString:[dic objectForKey:key]];
         }
         //将变化的参数替换
@@ -104,14 +96,12 @@
     
     [arr addObject:url];
     [arr addObject:paramentsDic];
-
+    
     return arr;
 }
 
 //分析数据位置、调用解析方法
-+ (instancetype)parse:(id)data
-        andMessageURL:(NSString *)MessageURL
-{
++ (instancetype)parse:(id)data andMessageURL:(NSString *)MessageURL{
     
     LXPParse *parse = [LXPParse new];
     parse.pathData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
@@ -134,9 +124,7 @@
 }
 
 //解析
-+ (instancetype )parseArr:(NSArray * )data
-                      RUL:(NSString *)url
-{
++ (instancetype )parseArr:(NSArray * )data RUL:(NSString *)url {
     
     
     NSString *string = [url substringWithRange:NSMakeRange([url rangeOfString:@"["].location+1, url.length-2-[url rangeOfString:@"["].location)];
@@ -173,20 +161,34 @@
     while (result.allData.count != count) {
         count = result.allData.count;
         for (NSString * key in [result.allData allKeys]) {
+            
+            
             //判断是什么类型
             if ([[result.allData objectForKey:key] isKindOfClass:[NSDictionary class]]) {
                 //调用字典解析方法
+                
+                if (((NSDictionary *)[result.allData objectForKey:key]).count == 1) {
+                    count ++;
+                    //1.2版本更新，修复了字典套字典，并且只有一对key-value时不完全解析的bug
+                }
                 [result.allData setValuesForKeysWithDictionary:[self parseDic:[result.allData objectForKey:key] withKey:key]];
                 
                 [result.allData removeObjectForKey:key];
+                
             }
             else if ([[result.allData objectForKey:key] isKindOfClass:[NSArray class]]) {
-                
+                if (((NSArray *)[result.allData objectForKey:key]).count == 1) {
+                    count ++;
+                    //1.2版本更新，修复了字典套字典，并且只有一对key-value时不完全解析的bug
+                }
                 [result.allData setValuesForKeysWithDictionary:[self parseArr:[result.allData objectForKey:key] withKey:key]];
-       
+                
                 //将解析之前的字典删除
                 [result.allData removeObjectForKey:key];
+                
             }
+            
+            
         }
     }
     
@@ -220,13 +222,13 @@
     NSMutableDictionary *dic = [NSMutableDictionary new];
     for (id object in arr) {
         if ([object isKindOfClass:[NSDictionary class]]) {
-
+            
             NSString *newKey = [NSString stringWithFormat:@"@%@,[%lu]",key,(unsigned long)[arr indexOfObject:object]];
             [dic setValue:object forKey:newKey];
             
         }else{
-        
-        [dic setValue:object forKey:[NSString stringWithFormat:@"@%@,[%lu]",key,(unsigned long)[arr indexOfObject:object]]];
+            
+            [dic setValue:object forKey:[NSString stringWithFormat:@"@%@,[%lu]",key,(unsigned long)[arr indexOfObject:object]]];
         }
     }
     [dic setValue:[NSNumber numberWithInteger: arr.count] forKey:[NSString stringWithFormat:@"%@Count",key]];
@@ -272,7 +274,7 @@
         }
         //满足！
         data = [self objectForKey:keyOfAllData];
-
+        
     }
     
     return data;
