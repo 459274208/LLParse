@@ -33,7 +33,7 @@
     }else{
         arr = @[stringOfURL,@""];
     }
-    
+ 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:arr[0] parameters:arr[1] success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -86,7 +86,7 @@
     
     for (NSString *key  in [dic allKeys]) {
         if ([key isEqualToString:_LXP_ChangeParament]) {
-            
+           
             url = [netURL stringByReplacingOccurrencesOfString:_LXP_ChangeParament withString:[dic objectForKey:key]];
         }
         //将变化的参数替换
@@ -96,7 +96,7 @@
     
     [arr addObject:url];
     [arr addObject:paramentsDic];
-    
+
     return arr;
 }
 
@@ -161,7 +161,7 @@
     while (result.allData.count != count) {
         count = result.allData.count;
         for (NSString * key in [result.allData allKeys]) {
-            
+          
             
             //判断是什么类型
             if ([[result.allData objectForKey:key] isKindOfClass:[NSDictionary class]]) {
@@ -176,18 +176,19 @@
                 [result.allData removeObjectForKey:key];
                 
             }
+            
             else if ([[result.allData objectForKey:key] isKindOfClass:[NSArray class]]) {
                 if (((NSArray *)[result.allData objectForKey:key]).count == 1) {
                     count ++;
                     //1.2版本更新，修复了字典套字典，并且只有一对key-value时不完全解析的bug
                 }
                 [result.allData setValuesForKeysWithDictionary:[self parseArr:[result.allData objectForKey:key] withKey:key]];
-                
+       
                 //将解析之前的字典删除
                 [result.allData removeObjectForKey:key];
                 
             }
-            
+           
             
         }
     }
@@ -199,7 +200,7 @@
 //字典解析
 - (NSMutableDictionary *) parseDic:(NSDictionary *)dic
                            withKey:(NSString *)key{
-    
+
     NSMutableDictionary *transDic = [NSMutableDictionary new];
     
     for (NSString *string  in [dic allKeys]) {
@@ -222,23 +223,23 @@
     NSMutableDictionary *dic = [NSMutableDictionary new];
     for (id object in arr) {
         if ([object isKindOfClass:[NSDictionary class]]) {
-            
+
             NSString *newKey = [NSString stringWithFormat:@"@%@,[%lu]",key,(unsigned long)[arr indexOfObject:object]];
             [dic setValue:object forKey:newKey];
             
         }else{
-            
-            [dic setValue:object forKey:[NSString stringWithFormat:@"@%@,[%lu]",key,(unsigned long)[arr indexOfObject:object]]];
+        
+        [dic setValue:object forKey:[NSString stringWithFormat:@"@%@,[%lu]",key,(unsigned long)[arr indexOfObject:object]]];
         }
     }
-    [dic setValue:[NSNumber numberWithInteger: arr.count] forKey:[NSString stringWithFormat:@"%@Count",key]];
+    [dic setValue:[NSNumber numberWithInteger: arr.count] forKey:[NSString stringWithFormat:@"%@_Count",key]];
     return dic;
 }
 
 @end
 
 @implementation NSMutableDictionary (ParseData)
-
+//取值
 -(instancetype)dataAtIndexPath:(NSIndexPath *)indexPath
                        withKey:(NSString *)key
                    identifySTR:(NSString *)identify;
@@ -254,7 +255,7 @@
             continue;
         }
         
-        if (identify !=nil && [keyOfAllData rangeOfString:identify].location == NSNotFound)
+        if (identify != nil && [keyOfAllData rangeOfString:identify].location == NSNotFound)
         {   //满足两个条件
             continue;
         }
@@ -274,7 +275,7 @@
         }
         //满足！
         data = [self objectForKey:keyOfAllData];
-        
+
     }
     
     return data;

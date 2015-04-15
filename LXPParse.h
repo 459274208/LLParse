@@ -1,6 +1,6 @@
 //
 //  LXPParse.h
-//  
+//  AXM
 //
 //  Created by 不要叫我小兰(*^__^*)  on 15/3/10.
 //  Copyright (c) 2015年 lxp. All rights reserved.
@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
+#define _LXP_ChangeParament @"_LXP_ChangeParament"
 //如有指教请联系邮箱tianyun1201@163.com 期待您的建议与改进，让我们把“懒人精神”发扬光大！
 @interface LXPParse : NSObject
 
@@ -23,18 +24,13 @@
 
 
 //超级无敌省事儿庸人自扰深陷苦海心花怒放妈妈说方法名要长的请求加解析方法
-+(void)getNetMessageFrom:(NSString *)stringOfURL
-         changeParaments:(NSDictionary *)dic
-         messageLocation:(NSString *)stringOfLocation
-                 success:(void(^)(LXPParse * parse))success
-                 failure:(void(^)(NSError *error))failure;
++(void)getNetMessageFrom:(NSString *)stringOfURL changeParaments:(NSDictionary *)dic  messageLocation:(NSString *)stringOfLocation success:(void(^)(LXPParse * parse))success failure:(void(^)(NSError *error))failure;
 
 
 
 @end
 
 @interface NSMutableDictionary (ParseData)
-
 
 -(instancetype)dataAtIndexPath:(NSIndexPath *)indexPath//cell所在位置，可填nil
                        withKey:(NSString *)key//目标信息对应的key
