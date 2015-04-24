@@ -237,7 +237,7 @@
 }
 
 @end
-
+#pragma mark - getData
 @implementation NSMutableDictionary (ParseData)
 //取值
 -(instancetype)dataAtIndexPath:(NSIndexPath *)indexPath
@@ -282,5 +282,32 @@
     
 }
 
+
+- (NSDictionary * )datawithKey:(NSString *)key
+               identifySTR:(NSString *)identify;
+{
+    
+    NSMutableDictionary * dic = [NSMutableDictionary new];
+    for (NSString *keyOfAllData in [self allKeys]) {
+        
+
+        if ([keyOfAllData hasSuffix:key] == NO)
+        {   //满足第一个条件
+            continue;
+        }
+        
+        if (identify != nil && [keyOfAllData rangeOfString:identify].location == NSNotFound)
+        {   //满足两个条件
+            continue;
+        }
+        
+        //满足！
+        [dic setValue:[self objectForKey:keyOfAllData] forKey:keyOfAllData];
+        
+    }
+    
+    return dic;
+    
+}
 
 @end
