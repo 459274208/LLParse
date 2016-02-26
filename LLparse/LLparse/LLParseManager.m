@@ -32,7 +32,7 @@
         _incremental = number;
     }
     _count += number;
-    [_dataArr addObject:[LLParse parseData:responseObject withParaments:changeParaments]];
+    [_dataArr addObject:parse];
     
     
 }
