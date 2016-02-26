@@ -17,13 +17,13 @@
 
 - (void)parseData:(id)responseObject
              with:(NSDictionary *)changeParaments
-          observe:(NSString *)key
+  observeProperty:(NSString *)key
 {
     if (!_dataArr) {
         _dataArr = [NSMutableArray new];
         _incremental = 1;
     }
-    
+    key = [NSString stringWithFormat:@"%@^.^Count",key];
     LLParse *parse = [LLParse parseData:responseObject withParaments:changeParaments];
     NSInteger number =  [[parse objectForKey:key index:nil] integerValue];
     

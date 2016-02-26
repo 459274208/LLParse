@@ -5,13 +5,17 @@
 //  Created by vnetoo on 16/1/12.
 //  Copyright © 2016年 tianyun. All rights reserved.
 //
-
+ 
 #import <Foundation/Foundation.h>
 
-@interface LLParseManager : NSObject
-//返回想统计的数据量
+@interface LLParseManager : NSObject 
+/**
+ 返回想统计的cell的行数
+ */
 @property(nonatomic,assign)NSInteger count;
-
+/**
+ 保存每一次解析的数据
+ */
 @property(nonatomic,strong)NSMutableArray *dataArr;
 /**
  解析一个json数据
@@ -20,7 +24,7 @@
  */
 - (void)parseData:(id)responseObject
              with:(NSDictionary *)changeParaments
-          observe:(NSString *)key;
+  observeProperty:(NSString *)key;
 /**
  
  该方法返回的数据取决于传入的参数：

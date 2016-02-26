@@ -89,7 +89,7 @@
     [manager GET:str parameters:paraments
          success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
              //解析数据
-             [_maneger parseData:responseObject with:paraments observe:@"data^.^Count"];
+             [_maneger parseData:responseObject with:paraments observeProperty:@"data"];
              [_table reloadData];
              
              if (isRefresh) {
