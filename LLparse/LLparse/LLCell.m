@@ -7,6 +7,7 @@
 //
 
 #import "LLCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface LLCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 
@@ -23,11 +24,11 @@
 -(void)setCell:(NSDictionary *)info{
     
     //info[@"iconUrl"]  这里面的key 就是从服务器获得的数据的key值
-    NSURL *url = [NSURL URLWithString:info[@"iconUrl"]];
-    [_image setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:url]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://100.mcu.vnetoo.com:1088/%@",info[@"FPicUrl"]]];
     
-    _title.text = info[@"name"];
-    _balabala.text = info[@"description"];
+    [_image setImageWithURL:url];
+    _title.text = info[@"FName"];
+    _balabala.text = info[@"FStartTime"];
     
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

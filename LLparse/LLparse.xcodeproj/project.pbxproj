@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8F3EC5D4568A24C001E93BF3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 168F14F3381CFDED67045377 /* libPods.a */; };
-		D12BF7AA1C4344F400161B34 /* LLPParse.m in Sources */ = {isa = PBXBuildFile; fileRef = D12BF7A91C4344F400161B34 /* LLPParse.m */; settings = {ASSET_TAGS = (); }; };
+		D12BF7AA1C4344F400161B34 /* LLPParse.m in Sources */ = {isa = PBXBuildFile; fileRef = D12BF7A91C4344F400161B34 /* LLPParse.m */; };
 		D131C95D1C3BD66000F55393 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D131C95C1C3BD66000F55393 /* main.m */; };
 		D131C9601C3BD66000F55393 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D131C95F1C3BD66000F55393 /* AppDelegate.m */; };
 		D131C9631C3BD66000F55393 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D131C9621C3BD66000F55393 /* ViewController.m */; };
@@ -17,9 +17,10 @@
 		D131C96B1C3BD66000F55393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D131C9691C3BD66000F55393 /* LaunchScreen.storyboard */; };
 		D131C9761C3BD66000F55393 /* LLparseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D131C9751C3BD66000F55393 /* LLparseTests.m */; };
 		D131C9811C3BD66000F55393 /* LLparseUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D131C9801C3BD66000F55393 /* LLparseUITests.m */; };
-		D14837731C44A92E008AACC2 /* LLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D14837711C44A92E008AACC2 /* LLCell.m */; settings = {ASSET_TAGS = (); }; };
-		D14837741C44A92E008AACC2 /* LLCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D14837721C44A92E008AACC2 /* LLCell.xib */; settings = {ASSET_TAGS = (); }; };
-		D14837771C44F710008AACC2 /* LLParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D14837761C44F710008AACC2 /* LLParseManager.m */; settings = {ASSET_TAGS = (); }; };
+		D141CC121C7EE56800877C87 /* UIKit+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = D141CC111C7EE56800877C87 /* UIKit+Category.m */; };
+		D14837731C44A92E008AACC2 /* LLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D14837711C44A92E008AACC2 /* LLCell.m */; };
+		D14837741C44A92E008AACC2 /* LLCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D14837721C44A92E008AACC2 /* LLCell.xib */; };
+		D14837771C44F710008AACC2 /* LLParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D14837761C44F710008AACC2 /* LLParseManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		D131C97C1C3BD66000F55393 /* LLparseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LLparseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D131C9801C3BD66000F55393 /* LLparseUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LLparseUITests.m; sourceTree = "<group>"; };
 		D131C9821C3BD66000F55393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D141CC101C7EE56800877C87 /* UIKit+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIKit+Category.h"; sourceTree = "<group>"; };
+		D141CC111C7EE56800877C87 /* UIKit+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIKit+Category.m"; sourceTree = "<group>"; };
 		D14837701C44A92E008AACC2 /* LLCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCell.h; sourceTree = "<group>"; };
 		D14837711C44A92E008AACC2 /* LLCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCell.m; sourceTree = "<group>"; };
 		D14837721C44A92E008AACC2 /* LLCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLCell.xib; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 		D131C95A1C3BD66000F55393 /* LLparse */ = {
 			isa = PBXGroup;
 			children = (
+				D141CC101C7EE56800877C87 /* UIKit+Category.h */,
+				D141CC111C7EE56800877C87 /* UIKit+Category.m */,
 				D12BF7A81C4344F400161B34 /* LLParse.h */,
 				D12BF7A91C4344F400161B34 /* LLPParse.m */,
 				D14837751C44F710008AACC2 /* LLParseManager.h */,
@@ -365,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D131C9631C3BD66000F55393 /* ViewController.m in Sources */,
+				D141CC121C7EE56800877C87 /* UIKit+Category.m in Sources */,
 				D131C9601C3BD66000F55393 /* AppDelegate.m in Sources */,
 				D131C95D1C3BD66000F55393 /* main.m in Sources */,
 				D14837731C44A92E008AACC2 /* LLCell.m in Sources */,
